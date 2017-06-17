@@ -22,21 +22,26 @@ APIs
 // Include the library in your app
 var airbnb = require('airapi')();
 
+client = new airbnb({
+      username: process.env.AIRBNB_USERNAME,
+      password: process.env.AIRBNB_PASSWORD
+    });
+	
 // Search
-airbnb.search(options);
+client.search(options);
 
 // Get calendar
-airbnb.getCalendar(options);
+client.getCalendar(options);
 
 // Get hosting information
-airbnb.getInfo(hostingId);
+client.getInfo(hostingId);
 
 // Get hosting estimate income, given availability, 
-// which can be retrieved using `airbnb.getCalendar()` above
-airbnb.getEstIncome(hostingAvailability);
+// which can be retrieved using `client.getCalendar()` above
+client.getEstIncome(hostingAvailability);
 
 // Get hosting reviews
-airbnb.getReviews(userId, options);
+client.getReviews(userId, options);
 ```
 
 **NOTE: All of these API endpoints, except for `getEstIncome` return a promise.**
@@ -47,7 +52,7 @@ airbnb.getReviews(userId, options);
 
 Search instant-bookable hostings in Seattle, Wa from July 3rd - July 6th, 2015, for 2 people, 2nd result page.
 ```javascript
-airbnb.search({
+client.search({
  location: 'Seattle, WA',
  checkin: '07/03/2015',
  checkout: '07/06/2015',
@@ -87,7 +92,7 @@ Possible search options. This is subject to change periodically. I'll try to kee
 
 Get May + June 2015 calendar for hosting ID: 4569115
 ```javascript
-airbnb.getCalendar(4569115, {
+client.getCalendar(4569115, {
  currency: 'USD',
  month: 5,
  year: 2015,
@@ -101,7 +106,7 @@ airbnb.getCalendar(4569115, {
 
 Get general information for hosting ID: 4569115
 ```javascript
-airbnb.getInfo(4569115).then(function(info) {
+client.getInfo(4569115).then(function(info) {
   console.log(info);
 });
 ```
@@ -110,13 +115,13 @@ airbnb.getInfo(4569115).then(function(info) {
 
 Estimate income for hosting ID: 4569115 for Jan + Feb, 2015
 ```javascript
-airbnb.getCalendar(4569115, {
+client.getCalendar(4569115, {
  currency: 'USD',
  month: 1,
  year: 2015,
  count: 2
 }).then(function(schedules) {
-  console.log(airbnb.getEstIncome(schedules));
+  console.log(client.getEstIncome(schedules));
 });
 ```
 
@@ -124,7 +129,7 @@ airbnb.getCalendar(4569115, {
 
 Get reviews for user ID: 4586440, as a host
 ```javascript
-airbnb.getReviews(4586440, {
+client.getReviews(4586440, {
   page: 1,
   role: 'host'
 }).then(function(reviews) {
@@ -134,7 +139,7 @@ airbnb.getReviews(4586440, {
 
 Get reviews for user ID: 4586440, as a guest
 ```javascript
-airbnb.getReviews(4586440, {
+client.getReviews(4586440, {
   page: 1,
   role: 'guest'
 }).then(function(reviews) {
