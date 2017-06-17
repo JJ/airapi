@@ -9,12 +9,15 @@ This is not affiliated nor endorsed by Airbnb.
 Airbnb does not provide public access to their API, so use at your own risk. 
 I'm not responsible for any misuse of this.
 
-##Installation
+## Installation
+
 ```
 npm install airapi --save
 ```
-##Usage
+## Usage
+
 APIs
+
 ```javascript
 // Include the library in your app
 var airbnb = require('airapi')();
@@ -38,8 +41,9 @@ airbnb.getReviews(userId, options);
 
 **NOTE: All of these API endpoints, except for `getEstIncome` return a promise.**
 
-##Examples
-###Search
+## Examples
+
+### Search
 
 Search instant-bookable hostings in Seattle, Wa from July 3rd - July 6th, 2015, for 2 people, 2nd result page.
 ```javascript
@@ -78,7 +82,8 @@ Possible search options. This is subject to change periodically. I'll try to kee
   neighborhoods: {Array}, e.g: ['Belltown', 'Queen Anne']
 }
 ```
-###Hosting calendar
+
+### Hosting calendar
 
 Get May + June 2015 calendar for hosting ID: 4569115
 ```javascript
@@ -92,7 +97,7 @@ airbnb.getCalendar(4569115, {
 });
 ```
 
-###Hosting information
+### Hosting information
 
 Get general information for hosting ID: 4569115
 ```javascript
@@ -101,7 +106,7 @@ airbnb.getInfo(4569115).then(function(info) {
 });
 ```
 
-###Hosting estimate income
+### Hosting estimate income
 
 Estimate income for hosting ID: 4569115 for Jan + Feb, 2015
 ```javascript
@@ -115,7 +120,7 @@ airbnb.getCalendar(4569115, {
 });
 ```
 
-###Hosting reviews
+### Hosting reviews
 
 Get reviews for user ID: 4586440, as a host
 ```javascript
@@ -143,5 +148,5 @@ git clone https://github.com/phamtrisi/airapi.git airapi
 cd airapi && npm install && node example.js
 ```
 
-##License
+## License
 [MIT](./LICENSE)
